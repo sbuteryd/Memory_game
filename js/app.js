@@ -46,16 +46,17 @@ const deck = document.querySelector('.deck');
 let second,third,list;
 
 function clickCard (event) {
-    console.log(event)
+    const targLI = event.target.nodeName === "LI"
+    console.log(event.target.nodeName)
     const first = document.querySelector('.open')//查看是否有打开元素，如果没有打开就打开
-    if (first === null) {
+    if (first === null && targLI) {
         event.target.classList.add('open');
         event.target.classList.add('show')
         second = document.querySelector('.open').firstElementChild.classList.value.split()
         list = document.querySelectorAll('.open')
         //打开第二个元素
         console.log(second)
-    }else if (second.length ===1 && list.length ===1){
+    }else if (second.length ===1 && list.length ===1 && targLI){
         event.target.classList.add('open');
         event.target.classList.add('show');
         third = event.target.querySelector('i').classList.value;
