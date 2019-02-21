@@ -39,64 +39,36 @@ function shuffle(array) {
 
 
 //1 .deck 添加一个事件
-//2、ever.target.classList.tar()
-//
-
-const deck = document.querySelector('.deck');
-let second// 获取第一个打开的open 元素。
-let third_first,third_second;
-let list;
-
-function clickCard (event) {
-    const targLI = event.target.nodeName === "LI"
-    const first = document.getElementsByClassName('open')//1、查看是否有打开元素，如果没有打开就打开
-    if (first.length === 0 && targLI) {//2、设置打开元素
-        event.target.classList.add('open');
-        event.target.classList.add('show')
-        second = document.getElementsByClassName('open')[0].firstElementChild.classList.value;
-        console.log(second)
-
-
-        //打开第二个元素
-    }if (second !==null && targLI){
-        third_first = event.target.classList;
-        third_first.add('open');
-        third_first.add('show')
-        third_second = event.target.firstElementChild.classList.value//第二次点击的图标名称
-        const find_all = document.getElementsByClassName('open show')
-        console.log('find_all',find_all)
-
-
-        if(third_second !==null && find_all.length === 2){
-            if(third_second === second){
-                const same = document.getElementsByClassName('open show');
-                for (let i=0;i<same.length ;i++){
-                    same[i].className ='card match'
-                    for (let i=0;i<same.length;i++){
-                        same[i].className ='card match'
-                    }
-                }
-            }
-
-        }
-        else {
-            setTimeout(function () {
-                if (second !== third_second){
-                    const deleOpen = document.getElementsByClassName('open show');
-                    for (let i=0;i<deleOpen.length ;i++){
-                        deleOpen[i].className ='card'
-                        console.log('deleOpen',deleOpen[i].classList)
-                        for (let i=0;i<deleOpen.length;i++){
-                            deleOpen[i].className ='card'
-                        }
-                    }
-                }
-            },200)
-        }
-
+const deck = document.getElementsByClassName('deck');
+let getOpen;
+function firstStep (event){
+    const findOne = document.getElementsByClassName('open')// 自动更新
+    if(findOne.length  === 0){//1、如果页面上找不到 open 那么就添加
+        event.target.classList.toggle('open')
+        event.target.classList.toggle('show')
+        getOpen= event.target.firstElementChild.classList[1]//2、储存第一个赋值
     }
+    if(findOne.length ===1){
+        event.target.classList.add('open')
+        event.target.classList.add('show')
+        console.log('findOne',findOne)
+        if(findOne.length ===2){
+            const clickSecond=  findOne[1].firstElementChild.classList[1]// 3 得到第二个 图标名称
+            const clickFirst = findOne[0].firstElementChild.classList[1]
+            setTimeout(function () {
+                if(clickFirst !== clickSecond){
+                    findOne[1].className = 'card'
+                    findOne[0].className = 'card'
+                }if (clickFirst === clickSecond){
+                    findOne[1].className = 'card match'
+                    findOne[0].className = 'card match'
+                }
+            },300)
+
+        }
+    }
+
 
 }
 
-
-deck.addEventListener('click',clickCard)
+deck[0].addEventListener('click',firstStep)
