@@ -43,38 +43,58 @@ function shuffle(array) {
 //
 
 const deck = document.querySelector('.deck');
-let second,third,list;
+let second// 获取第一个打开的open 元素。
+let third_first,third_second;
+let list;
 
 function clickCard (event) {
     const targLI = event.target.nodeName === "LI"
-    console.log(event.target.nodeName)
-    const first = document.querySelector('.open')//查看是否有打开元素，如果没有打开就打开
-    if (first === null && targLI) {
+    const first = document.getElementsByClassName('open')//1、查看是否有打开元素，如果没有打开就打开
+    if (first.length === 0 && targLI) {//2、设置打开元素
         event.target.classList.add('open');
         event.target.classList.add('show')
-        second = document.getElementsByClassName('open').firstElementChild.classList.value.split()
-        list = document.getElementsByClassName('open')
-        //打开第二个元素
+        second = document.getElementsByClassName('open')[0].firstElementChild.classList.value;
         console.log(second)
-    }else if (second.length ===1 && list.length ===1 && targLI){
-        event.target.classList.add('open');
-        event.target.classList.add('show');
-        third = event.target.getElementsByTagName('i').classList.value;
-        setTimeout(function () {
-           if (second[0] !== third){
-               event.target.className = 'card'//删除卡如果不匹配
-               const findOne = document.getElementsByClassName('open');
-               findOne.className ='card'
-           }
-           if (second[0] === third) {//如果匹配 颜色统一
-               event.target.className = 'card match'//删除卡如果不匹配
-               const findOne = document.getElementsByClassName('open');
-               findOne.className ='card match'
-           }
 
-        },1000)
+
+        //打开第二个元素
+    }if (second !==null && targLI){
+        third_first = event.target.classList;
+        third_first.add('open');
+        third_first.add('show')
+        third_second = event.target.firstElementChild.classList.value//第二次点击的图标名称
+        const find_all = document.getElementsByClassName('open show')
+        console.log('find_all',find_all)
+
+
+        if(third_second !==null && find_all.length === 2){
+            if(third_second === second){
+                const same = document.getElementsByClassName('open show');
+                for (let i=0;i<same.length ;i++){
+                    same[i].className ='card match'
+                    for (let i=0;i<same.length;i++){
+                        same[i].className ='card match'
+                    }
+                }
+            }
+
+        }
+        else {
+            setTimeout(function () {
+                if (second !== third_second){
+                    const deleOpen = document.getElementsByClassName('open show');
+                    for (let i=0;i<deleOpen.length ;i++){
+                        deleOpen[i].className ='card'
+                        console.log('deleOpen',deleOpen[i].classList)
+                        for (let i=0;i<deleOpen.length;i++){
+                            deleOpen[i].className ='card'
+                        }
+                    }
+                }
+            },200)
+        }
+
     }
-        list = document.getElementsByClassName('open')//查询第二个open 限制打开数
 
 }
 
