@@ -52,29 +52,29 @@ function clickCard (event) {
     if (first === null && targLI) {
         event.target.classList.add('open');
         event.target.classList.add('show')
-        second = document.querySelector('.open').firstElementChild.classList.value.split()
-        list = document.querySelectorAll('.open')
+        second = document.getElementsByClassName('open').firstElementChild.classList.value.split()
+        list = document.getElementsByClassName('open')
         //打开第二个元素
         console.log(second)
     }else if (second.length ===1 && list.length ===1 && targLI){
         event.target.classList.add('open');
         event.target.classList.add('show');
-        third = event.target.querySelector('i').classList.value;
+        third = event.target.getElementsByTagName('i').classList.value;
         setTimeout(function () {
            if (second[0] !== third){
                event.target.className = 'card'//删除卡如果不匹配
-               const findOne = document.querySelector('.open');
+               const findOne = document.getElementsByClassName('open');
                findOne.className ='card'
            }
            if (second[0] === third) {//如果匹配 颜色统一
                event.target.className = 'card match'//删除卡如果不匹配
-               const findOne = document.querySelector('.open');
+               const findOne = document.getElementsByClassName('open');
                findOne.className ='card match'
            }
 
         },1000)
     }
-        list = document.querySelectorAll('.open')//查询第二个open 限制打开数
+        list = document.getElementsByClassName('open')//查询第二个open 限制打开数
 
 }
 
