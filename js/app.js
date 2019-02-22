@@ -62,15 +62,14 @@ function firstStep (event){
              clickFirst = findOne[0].firstElementChild.classList[1]// 4 得到第一个图标名称
              console.log('noMatch',noMatch)
             setTimeout(function () {
-                noMatch = document.getElementsByClassName('match')[0].classList[1];
-                if(clickFirst !== clickSecond || noMatch !== 'match'){
+                if(clickFirst !== clickSecond){
                     findOne[1].className = 'card';
                     findOne[0].className = 'card'
                 }
             },200)
 
         }
-        if (clickFirst === clickSecond && findOne.length ===2){
+        if (clickFirst === clickSecond && findOne.length ===2){//
             findOne[1].className = 'card match';
             findOne[0].className = 'card match'
         }
