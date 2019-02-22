@@ -44,7 +44,8 @@ let addList =[]
 function firstStep (event){
     const targetName = event.target.nodeName// 0 点击的时候在 li
     const findOne = document.getElementsByClassName('open')// 自动更新
-    if(findOne.length  === 0 && targetName === 'LI'){//、0-1如果页面上找不到 open 那么就添加 并且打开
+    let limitnoMatch = event.target.classList.contains('match')
+    if(findOne.length  === 0 && targetName === 'LI' && limitnoMatch === false){//、0-1如果页面上找不到 open 那么就添加 并且打开
         event.target.className = ('card open show');
     }
    // 1、 得到第一个open  findOne HTMLCollection [li.card.open.show]
@@ -55,7 +56,7 @@ function firstStep (event){
             // console.log('event.target)',event.target)
             event.target.className = ('card open show ');
             //3 第二个 点击到提那件，添加 open show
-            console.log(findOne[0].firstElementChild.className);
+            // console.log(findOne[0].firstElementChild.className);
             // console.log('findOne[1]',findOne[1].firstElementChild.className)
             if(findOne.length >= 2 && targetName === 'LI'){
                 if(findOne[0].firstElementChild.className === findOne[1].firstElementChild.className){
