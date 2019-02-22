@@ -41,7 +41,7 @@ function shuffle(array) {
 //1 .deck 添加一个事件
 const deck = document.getElementsByClassName('deck');
 let addList =[]
-function firstStep (event){
+let  firstStep  = (event) => {
     const targetName = event.target.nodeName// 0 点击的时候在 li
     const findOne = document.getElementsByClassName('open')// 自动更新
     let limitnoMatch = event.target.classList.contains('match')
@@ -59,7 +59,7 @@ function firstStep (event){
                 if(findOne[0].firstElementChild.className === findOne[1].firstElementChild.className){
                     findOne[0].className = 'card match';
                     findOne[0].className = 'card match'
-                }else (setTimeout(function () {
+                }else (setTimeout(() => {
                     if(findOne.length>=2 && targetName === 'LI'){
                         if(findOne[0].firstElementChild.className !== findOne[1].firstElementChild.className){
                             findOne[0].className = 'card';
