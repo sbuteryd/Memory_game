@@ -41,30 +41,38 @@ function shuffle(array) {
 //1 .deck 添加一个事件
 const deck = document.getElementsByClassName('deck');
 let getOpen;
+let clickSecond;
+let clickFirst;
+let noMatch;
 function firstStep (event){
+    // debugger
+    const targetName = event.target.nodeName// 0 点击的时候在 li
     const findOne = document.getElementsByClassName('open')// 自动更新
-    if(findOne.length  === 0){//1、如果页面上找不到 open 那么就添加
-        event.target.classList.toggle('open')
-        event.target.classList.toggle('show')
+    if(findOne.length  === 0 && targetName === 'LI'){//1、如果页面上找不到 open 那么就添加
+        event.target.classList.add('open');
+        event.target.classList.add('show');
         getOpen= event.target.firstElementChild.classList[1]//2、储存第一个赋值
     }
-    if(findOne.length ===1){
-        event.target.classList.add('open')
-        event.target.classList.add('show')
-        console.log('findOne',findOne)
+    if(findOne.length ===1 && event.target.nodeName === 'LI'){
+        event.target.classList.add('open');
+        event.target.classList.add('show');
+        console.log('findOne',findOne);
         if(findOne.length ===2){
-            const clickSecond=  findOne[1].firstElementChild.classList[1]// 3 得到第二个 图标名称
-            const clickFirst = findOne[0].firstElementChild.classList[1]
+             clickSecond=  findOne[1].firstElementChild.classList[1]// 3 得到第二个 图标名称
+             clickFirst = findOne[0].firstElementChild.classList[1]// 4 得到第一个图标名称
+             console.log('noMatch',noMatch)
             setTimeout(function () {
-                if(clickFirst !== clickSecond){
-                    findOne[1].className = 'card'
+                noMatch = document.getElementsByClassName('match')[0].classList[1];
+                if(clickFirst !== clickSecond || noMatch !== 'match'){
+                    findOne[1].className = 'card';
                     findOne[0].className = 'card'
-                }if (clickFirst === clickSecond){
-                    findOne[1].className = 'card match'
-                    findOne[0].className = 'card match'
                 }
-            },300)
+            },200)
 
+        }
+        if (clickFirst === clickSecond && findOne.length ===2){
+            findOne[1].className = 'card match';
+            findOne[0].className = 'card match'
         }
     }
 
