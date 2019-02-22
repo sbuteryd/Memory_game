@@ -53,11 +53,8 @@ function firstStep (event){
         let  noMatch = event.target.classList.contains('match') // 2、 不包含 match
         // console.log('2',event.target.classList)  DOMTokenList ["card", value: "card"]  结果
         if (noMatch === false){
-            // console.log('event.target)',event.target)
             event.target.className = ('card open show ');
             //3 第二个 点击到提那件，添加 open show
-            // console.log(findOne[0].firstElementChild.className);
-            // console.log('findOne[1]',findOne[1].firstElementChild.className)
             if(findOne.length >= 2 && targetName === 'LI'){
                 if(findOne[0].firstElementChild.className === findOne[1].firstElementChild.className){
                     findOne[0].className = 'card match';
@@ -74,29 +71,8 @@ function firstStep (event){
 
             }
         }
-        // setTimeout(function () {
-        //     console.log(findOne)
-            // if(findOne[0].classList.value === 'card open show' && findOne[1].classList.value === 'card open show'){
-            //     console.log('findOne settime out ',findOne)
-            //     if(findOne[0].firstElementChild.classList.value === findOne[1].firstElementChild.classList.value){//1 得到图标的名称
-            //         findOne[0].className ='card match';
-            //         findOne[0].className ='card match'
-            //     }else {
-            //        const limit = event.target.classList.contains('match')
-            //         setTimeout(function () {
-            //
-            //             if(findOne.length ===2 && limit === false ){
-            //                 findOne[0].className ='card'
-            //                 findOne[0].className ='card'
-            //             }
-            //            // findOn[1].className ='card'
-            //         },100)
-            //     }
-            // }
-        // },0)
     }
 
 
 }
-
 deck[0].addEventListener('click',firstStep)
