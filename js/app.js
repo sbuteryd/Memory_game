@@ -40,37 +40,59 @@ function shuffle(array) {
 
 //1 .deck 添加一个事件
 const deck = document.getElementsByClassName('deck');
-let getOpen;
+let addList =[]
 function firstStep (event){
-    // debugger
     const targetName = event.target.nodeName// 0 点击的时候在 li
     const findOne = document.getElementsByClassName('open')// 自动更新
-    if(findOne.length  === 0 && targetName === 'LI'){//1、如果页面上找不到 open 那么就添加
-        event.target.classList.add('open');
-        event.target.classList.add('show');
-        getOpen= event.target.firstElementChild.classList[1]//2、储存第一个赋值
+    if(findOne.length  === 0 && targetName === 'LI'){//、0-1如果页面上找不到 open 那么就添加 并且打开
+        event.target.className = ('card open show');
     }
-    else if (findOne.length ===1){
-        setTimeout(function () {
-            event.target.classList.add('open');
-            event.target.classList.add('show');
-            if(findOne[0].classList.value === 'card open show'){
-                if(findOne[0].firstElementChild.classList.value === findOne[1].firstElementChild.classList.value){//1 得到图标的名称
-                    findOne[0].className ='card match';
-                    findOne[0].className ='card match'
-                }else {
-                   const limit = event.target.classList.contains('open')
-                    setTimeout(function () {
-
-                        if(findOne.length ===2 && limit === true ){
-                            findOne[0].className ='card'
-                            findOne[0].className ='card'
+   // 1、 得到第一个open  findOne HTMLCollection [li.card.open.show]
+    else if (findOne.length ===1 && targetName === 'LI') {
+        let  noMatch = event.target.classList.contains('match') // 2、 不包含 match
+        // console.log('2',event.target.classList)  DOMTokenList ["card", value: "card"]  结果
+        if (noMatch === false){
+            // console.log('event.target)',event.target)
+            event.target.className = ('card open show ');
+            //3 第二个 点击到提那件，添加 open show
+            console.log(findOne[0].firstElementChild.className);
+            // console.log('findOne[1]',findOne[1].firstElementChild.className)
+            if(findOne.length >= 2 && targetName === 'LI'){
+                if(findOne[0].firstElementChild.className === findOne[1].firstElementChild.className){
+                    findOne[0].className = 'card match';
+                    findOne[0].className = 'card match'
+                }else (setTimeout(function () {
+                    if(findOne.length>=2 && targetName === 'LI'){
+                        if(findOne[0].firstElementChild.className !== findOne[1].firstElementChild.className){
+                            findOne[0].className = 'card';
+                            findOne[0].className = 'card'
                         }
-                       // findOn[1].className ='card'
-                    },400)
-                }
+                    }
+
+                },200))
+
             }
-        },0)
+        }
+        // setTimeout(function () {
+        //     console.log(findOne)
+            // if(findOne[0].classList.value === 'card open show' && findOne[1].classList.value === 'card open show'){
+            //     console.log('findOne settime out ',findOne)
+            //     if(findOne[0].firstElementChild.classList.value === findOne[1].firstElementChild.classList.value){//1 得到图标的名称
+            //         findOne[0].className ='card match';
+            //         findOne[0].className ='card match'
+            //     }else {
+            //        const limit = event.target.classList.contains('match')
+            //         setTimeout(function () {
+            //
+            //             if(findOne.length ===2 && limit === false ){
+            //                 findOne[0].className ='card'
+            //                 findOne[0].className ='card'
+            //             }
+            //            // findOn[1].className ='card'
+            //         },100)
+            //     }
+            // }
+        // },0)
     }
 
 
