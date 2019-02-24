@@ -43,7 +43,7 @@ const deck = document.getElementsByClassName('deck');
 let addList =[]
 let  firstStep  = (event) => {
     const targetName = event.target.nodeName// 0 点击的时候在 li
-    const findOne = document.getElementsByClassName('open')// 自动更新
+    const findOne = document.getElementsByClassName('open')//
     let limitnoMatch = event.target.classList.contains('match')
     if(findOne.length  === 0 && targetName === 'LI' && limitnoMatch === false){//、0-1如果页面上找不到 open 那么就添加 并且打开
         event.target.className = ('card open show');
@@ -75,4 +75,8 @@ let  firstStep  = (event) => {
 
 
 }
-deck[0].addEventListener('click',firstStep)
+deck[0].addEventListener('click',firstStep);
+
+const  reload = document.querySelector('.restart');
+
+reload.onclick = ()=>{location.reload()};
