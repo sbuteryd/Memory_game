@@ -72,15 +72,10 @@ let  firstStep  = (event) => {
                                 findOne[0].className = 'card'
                                 findOne[0].className = 'card'
                             },1000)
-
-
                             // findOne[0].className = 'card' ;
                             // findOne[0].className = ' animated bounce card';
-
-
                         }
                     }
-
                 },300))
 
             }
