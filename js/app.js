@@ -57,17 +57,31 @@ let  firstStep  = (event) => {
             //3 第二个 点击到提那件，添加 open show
             if(findOne.length >= 2 && targetName === 'LI'){
                 if(findOne[0].firstElementChild.className === findOne[1].firstElementChild.className){
-                    findOne[0].className = 'card match';
-                    findOne[0].className = 'card match'
+                    findOne[0].classList.add('animated','rubberBand')
+                    findOne[1].classList.add('animated','rubberBand')
+                    setTimeout( ()=>{
+                        findOne[0].className = 'card match ';
+                        findOne[0].className = 'card match'
+                    },1000)
                 }else (setTimeout(() => {
                     if(findOne.length>=2 && targetName === 'LI'){
                         if(findOne[0].firstElementChild.className !== findOne[1].firstElementChild.className){
-                            findOne[0].className = 'card';
-                            findOne[0].className = 'card'
+                            findOne[0].classList.add('animated','shake');
+                            findOne[1].classList.add('animated','shake');
+                            setTimeout( ()=> {
+                                findOne[0].className = 'card'
+                                findOne[0].className = 'card'
+                            },1000)
+
+
+                            // findOne[0].className = 'card' ;
+                            // findOne[0].className = ' animated bounce card';
+
+
                         }
                     }
 
-                },200))
+                },300))
 
             }
         }
