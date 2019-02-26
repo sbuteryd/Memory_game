@@ -43,7 +43,7 @@ const getCards = document.getElementsByClassName('deck');
 
 const children = getCards[0].children//1-1、找到标签内的牌的class名称。
 
-
+let count
 function changeClass() {
     let saveShuffle//保存数组
     let listFA = []//1-2得到随机之前的牌，添加到数组
@@ -65,6 +65,36 @@ function setCars(saveShuffle) {
 }
 
 
+//倒计时
+function startTimer(duration, display) {
+    var timer = duration, minutes, seconds;
+    setInterval(function () {
+        minutes = parseInt(timer / 60, 10)
+        seconds = parseInt(timer % 60, 10);
+
+        minutes = minutes < 10 ? "0" + minutes : minutes;
+        seconds = seconds < 10 ? "0" + seconds : seconds;
+
+        display.textContent = minutes + ":" + seconds;
+
+        if (--timer < 0) {
+            Gameover()
+        }
+    }, 1000);
+}
+
+
+window.onload = function () {
+    var fiveMinutes = 60 * 5,
+        display = document.querySelector('#time');
+    startTimer(fiveMinutes, display);
+};
+
+
+function Gameover() {
+    alert("Gaome over ");
+    location.reload()
+}
 
 //1 .deck 添加一个事件
 const deck = document.getElementsByClassName('deck');
