@@ -37,6 +37,25 @@ function shuffle(array) {
  *    + 如果所有卡都匹配，则显示带有最终分数的消息（将这个功能放在你从这个函数中调用的另一个函数中）
  */
 
+//1、收集卡片、2、进行随机打乱、3、然后在进行修改。
+
+const getCards = document.getElementsByClassName('deck');
+
+const children = getCards[0].children//1-1、找到标签内的牌的class名称。
+
+
+function changeClass() {
+    let saveShuffle//保存数组
+    let listFA = []//1-2得到随机之前的牌，添加到数组
+    for(let i=0;i<children.length; i++){    //1-3随机之前的牌，添加到数组
+        listFA.push(children[i].firstElementChild.className)
+    }
+    console.log(listFA)
+}
+
+changeClass()
+
+
 
 //1 .deck 添加一个事件
 const deck = document.getElementsByClassName('deck');
