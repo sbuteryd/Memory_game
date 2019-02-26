@@ -41,8 +41,10 @@ function shuffle(array) {
 
 const getCards = document.getElementsByClassName('deck');
 
-const children = getCards[0].children//1-1、找到标签内的牌的class名称。
+//1-1、找到标签内的牌的class名称。
+const children = getCards[0].children
 
+//赢游戏效果
 const find_cards = document.getElementsByClassName('match');
 
 
@@ -66,8 +68,6 @@ function setCars(saveShuffle) {
         }
     }
 }
-
-
 //倒计时
 function startTimer(duration, display) {
     var timer = duration, minutes, seconds;
@@ -86,13 +86,11 @@ function startTimer(duration, display) {
     }, 1000);
 }
 
-
 window.onload = function () {
     var fiveMinutes = 60 * 5,
         display = document.querySelector('#time');
     startTimer(fiveMinutes, display);
 };
-
 
 function gameOver() {
     alert("游戏结束");
@@ -145,12 +143,12 @@ let  firstStep  = (event) => {
         }
     }
 }
+
 deck[0].addEventListener('click',firstStep);
 
+// 用户点击刷新游戏
 const  reload = document.querySelector('.restart');
-
 reload.onclick = ()=>{location.reload()};
-
 
 function getall() {
     if(find_cards.length === 16){
