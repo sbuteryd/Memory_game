@@ -98,8 +98,11 @@ function Gameover() {
 
 //1 .deck 添加一个事件
 const deck = document.getElementsByClassName('deck');
+let moves=0;
 let addList =[]
 let  firstStep  = (event) => {
+    moves +=1
+    document.querySelector('.moves').textContent = moves
     const targetName = event.target.nodeName// 0 点击的时候在 li
     const findOne = document.getElementsByClassName('open')//
     let limitnoMatch = event.target.classList.contains('match')
@@ -114,6 +117,7 @@ let  firstStep  = (event) => {
             event.target.className = ('card open show ');
             //3 第二个 点击到提那件，添加 open show
             if(findOne.length >= 2 && targetName === 'LI'){
+                console.log(findOne)
                 if(findOne[0].firstElementChild.className === findOne[1].firstElementChild.className){
                     findOne[0].classList.add('animated','rubberBand')
                     findOne[1].classList.add('animated','rubberBand')
