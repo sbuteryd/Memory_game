@@ -43,6 +43,9 @@ const getCards = document.getElementsByClassName('deck');
 
 const children = getCards[0].children//1-1、找到标签内的牌的class名称。
 
+const find_cards = document.getElementsByClassName('match');
+
+
 let count
 function changeClass() {
     let saveShuffle//保存数组
@@ -78,7 +81,7 @@ function startTimer(duration, display) {
         display.textContent = minutes + ":" + seconds;
 
         if (--timer < 0) {
-            Gameover()
+            gameOver()
         }
     }, 1000);
 }
@@ -91,8 +94,8 @@ window.onload = function () {
 };
 
 
-function Gameover() {
-    alert("Gaome over ");
+function gameOver() {
+    alert("游戏结束");
     location.reload()
 }
 
@@ -123,8 +126,9 @@ let  firstStep  = (event) => {
                     findOne[1].classList.add('animated','rubberBand')
                     setTimeout( ()=>{
                         findOne[0].className = 'card match ';
-                        findOne[0].className = 'card match'
-                    },1000)
+                        findOne[0].className = 'card match';
+                        getall();
+                    },500)
                 }else (setTimeout(() => {
                     if(findOne.length>=2 && targetName === 'LI'){
                         if(findOne[0].firstElementChild.className !== findOne[1].firstElementChild.className){
@@ -133,21 +137,25 @@ let  firstStep  = (event) => {
                             setTimeout( ()=> {
                                 findOne[0].className = 'card'
                                 findOne[0].className = 'card'
-                            },1000)
-                            // findOne[0].className = 'card' ;
-                            // findOne[0].className = ' animated bounce card';
+                            },500)
                         }
                     }
                 },300))
-
             }
         }
     }
-
-
 }
 deck[0].addEventListener('click',firstStep);
 
 const  reload = document.querySelector('.restart');
 
 reload.onclick = ()=>{location.reload()};
+
+
+function getall() {
+    if(find_cards.length === 16){
+        const save = document.getElementsByClassName('time');
+        alert('你赢了游戏','步数是:',count)
+        location.reload()
+    }
+}
