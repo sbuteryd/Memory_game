@@ -40,35 +40,32 @@ function shuffle(array) {
 //1、收集卡片、2、进行随机打乱、3、然后在进行修改。
 
 const getCards = document.getElementsByClassName('deck');
+let count;
+//1-1、找到标签内的牌的class名称  fa fa-diamond 等 保存数组。。
+//1-2得到随机之前的牌，添加到数组 listFA=[]
+//1-3随机之前的牌，添加到数组
+//1-4 随机的得到的牌 shuffle 保存 saveShuffle
+// 修改现有页面的牌  数组一个一个的进行替换 1对1, saveShuffle 随机等牌,children 现有牌
+//倒计时 startTimer（）
 
-//1-1、找到标签内的牌的class名称。
-const children = getCards[0].children
-
-//赢游戏效果
-const find_cards = document.getElementsByClassName('match');
-
-
-let count
+const children = getCards[0].children;
 function changeClass() {
-    let saveShuffle//保存数组
-    let listFA = []//1-2得到随机之前的牌，添加到数组
-    for(let i=0;i<children.length; i++){    //1-3随机之前的牌，添加到数组
+    let saveShuffle;
+    let listFA = [];
+    for(let i=0;i<children.length; i++){
         listFA.push(children[i].firstElementChild.className)
     }
-    saveShuffle = shuffle(listFA)// 随机的得到的牌
-    setCars(saveShuffle)// 得到随机牌，进行修改牌
+    saveShuffle = shuffle(listFA);
+    setCars(saveShuffle)
 }
-
-changeClass()
-
+changeClass();
 function setCars(saveShuffle) {
     for(let i=0;i<1; i++){
         for(let t=0;t<saveShuffle.length;t++){
-            children[t].firstElementChild.className = saveShuffle[t]// 修改现有页面的牌  数组一个一个的进行替换 1对1
+            children[t].firstElementChild.className = saveShuffle[t]
         }
     }
 }
-//倒计时
 function startTimer(duration, display) {
     var timer = duration, minutes, seconds;
     setInterval(function () {
@@ -98,6 +95,9 @@ function gameOver() {
 }
 
 //1 .deck 添加一个事件
+// 1、 得到第一个open  findOne HTMLCollection [li.card.open.show]
+// 2、 不包含 match
+// 3、 第二个 点击到提那件，添加 open show
 const deck = document.getElementsByClassName('deck');
 let moves=0;
 let addList =[]
@@ -110,18 +110,16 @@ let  firstStep  = (event) => {
     if(findOne.length  === 0 && targetName === 'LI' && limitnoMatch === false){//、0-1如果页面上找不到 open 那么就添加 并且打开
         event.target.className = ('card open show');
     }
-   // 1、 得到第一个open  findOne HTMLCollection [li.card.open.show]
     else if (findOne.length ===1 && targetName === 'LI') {
-        let  noMatch = event.target.classList.contains('match') // 2、 不包含 match
-        // console.log('2',event.target.classList)  DOMTokenList ["card", value: "card"]  结果
+        let  noMatch = event.target.classList.contains('match')
         if (noMatch === false){
             event.target.className = ('card open show ');
-            //3 第二个 点击到提那件，添加 open show
+
             if(findOne.length >= 2 && targetName === 'LI'){
                 console.log(findOne)
                 if(findOne[0].firstElementChild.className === findOne[1].firstElementChild.className){
-                    findOne[0].classList.add('animated','rubberBand')
-                    findOne[1].classList.add('animated','rubberBand')
+                    findOne[0].classList.add('animated','rubberBand');
+                    findOne[1].classList.add('animated','rubberBand');
                     setTimeout( ()=>{
                         findOne[0].className = 'card match ';
                         findOne[0].className = 'card match';
@@ -142,14 +140,17 @@ let  firstStep  = (event) => {
             }
         }
     }
-}
+};
 
 deck[0].addEventListener('click',firstStep);
 
-// 用户点击刷新游戏
+//用户点击图标（relaod 页面）
 const  reload = document.querySelector('.restart');
 reload.onclick = ()=>{location.reload()};
 
+//都配成功都情况下
+const find_cards = document.getElementsByClassName('match');
+//成功后弹出结果
 function getall() {
     if(find_cards.length === 16){
         const save = document.getElementsByClassName('time');
