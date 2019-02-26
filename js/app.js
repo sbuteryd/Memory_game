@@ -51,6 +51,9 @@ function changeClass() {
         listFA.push(children[i].firstElementChild.className)
     }
     console.log(listFA)
+    saveShuffle = shuffle(listFA)
+    console.log(saveShuffle)
+
 }
 
 changeClass()
