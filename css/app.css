@@ -111,3 +111,12 @@ h1 {
 .mismatch {
     background-color: orangered;
 }
+
+.step {
+    position: relative;
+    left: 10px;
+}
+#time{
+    position: relative;
+    left: 10px;
+}
