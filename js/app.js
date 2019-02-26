@@ -50,13 +50,19 @@ function changeClass() {
     for(let i=0;i<children.length; i++){    //1-3随机之前的牌，添加到数组
         listFA.push(children[i].firstElementChild.className)
     }
-    console.log(listFA)
-    saveShuffle = shuffle(listFA)
-    console.log(saveShuffle)
-
+    saveShuffle = shuffle(listFA)// 随机的得到的牌
+    setCars(saveShuffle)// 得到随机牌，进行修改牌
 }
 
 changeClass()
+
+function setCars(saveShuffle) {
+    for(let i=0;i<1; i++){
+        for(let t=0;t<saveShuffle.length;t++){
+            children[t].firstElementChild.className = saveShuffle[t]// 修改现有页面的牌  数组一个一个的进行替换 1对1
+        }
+    }
+}
 
 
 
