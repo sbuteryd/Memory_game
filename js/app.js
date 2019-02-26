@@ -41,12 +41,16 @@ function shuffle(array) {
 
 const getCards = document.getElementsByClassName('deck');
 let count;
-//1-1、找到标签内的牌的class名称  fa fa-diamond 等 保存数组。。
-//1-2得到随机之前的牌，添加到数组 listFA=[]
-//1-3随机之前的牌，添加到数组
-//1-4 随机的得到的牌 shuffle 保存 saveShuffle
-// 修改现有页面的牌  数组一个一个的进行替换 1对1, saveShuffle 随机等牌,children 现有牌
-//倒计时 startTimer（）
+
+/*
+*1-1、找到标签内的牌的class名称  fa fa-diamond 等 保存数组。。
+*1-2得到随机之前的牌，添加到数组 listFA=[]
+*1-3随机之前的牌，添加到数组
+*1-4 随机的得到的牌 shuffle 保存 saveShuffle
+*修改现有页面的牌  数组一个一个的进行替换 1对1, saveShuffle 随机等牌,children 现有牌
+*倒计时 startTimer（）
+*/
+
 
 const children = getCards[0].children;
 function changeClass() {
@@ -94,10 +98,13 @@ function gameOver() {
     location.reload()
 }
 
-//1 .deck 添加一个事件
-// 1、 得到第一个open  findOne HTMLCollection [li.card.open.show]
-// 2、 不包含 match
-// 3、 第二个 点击到提那件，添加 open show
+/*
+1   .deck 添加一个事件
+2、 得到第一个open  findOne HTMLCollection [li.card.open.show]
+3、 不包含 match
+4、 第二个 点击到提那件，添加 open show
+*/
+
 const deck = document.getElementsByClassName('deck');
 let moves=0;
 let addList =[]
